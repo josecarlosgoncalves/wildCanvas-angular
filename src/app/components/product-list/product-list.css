@@ -1,0 +1,27 @@
+.gallery {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  color: #243023;
+  font-family: Poppins, Arial, sans-serif;
+}
+
+.gallery-header h2 {
+  margin-bottom: 0.75rem;
+  color: #16351f;
+  font-size: 2rem;
+}
+
+.gallery-header p,
+.empty-gallery {
+  max-width: 760px;
+  margin: 0 0 1.5rem;
+  color: #5c665b;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.gallery-list {
+  display: grid;
+  gap: 1.5rem;
+}

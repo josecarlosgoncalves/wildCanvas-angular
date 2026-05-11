@@ -1,0 +1,67 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "imagem": "/images/Produto_01.jpg",
+      "titulo": "Cão",
+      "descricao": "Pintura expressiva com tons vibrantes, ideal para dar vida a qualquer espaço.",
+      "quantidade": 0,
+      "preco": 100
+    },
+    {
+      "id": "2",
+      "imagem": "/images/Produto_02.jpg",
+      "titulo": "Dragão",
+      "descricao": "Obra de fantasia com detalhes intensos e uma presença visual marcante.",
+      "quantidade": 2,
+      "preco": 75
+    },
+    {
+      "id": "3",
+      "imagem": "/images/Produto_03.jpg",
+      "titulo": "Dragão",
+      "descricao": "Peça artística com composição dinâmica, perfeita para ambientes criativos.",
+      "quantidade": 4,
+      "preco": 80
+    },
+    {
+      "id": "4",
+      "imagem": "/images/Produto_04.jpg",
+      "titulo": "Unicórnio",
+      "descricao": "Pintura mágica com detalhes encantadores, ideal para ambientes acolhedores.",
+      "quantidade": 3,
+      "preco": 90
+    }
+  ],
+  "vendas": [
+    {
+      "orderNumber": "WC-012028",
+      "customer": {
+        "nome": "xx",
+        "email": "xx",
+        "telefone": "xx",
+        "morada": "xx",
+        "cidade": "xx",
+        "codigoPostal": "xx"
+      },
+      "paymentMethod": "mbway",
+      "date": "2026-05-11T20:56:52.028Z",
+      "items": [
+        {
+          "product": {
+            "id": "1",
+            "imagem": "/images/Produto_01.jpg",
+            "titulo": "Cão",
+            "descricao": "Pintura expressiva com tons vibrantes, ideal para dar vida a qualquer espaço.",
+            "quantidade": 1,
+            "preco": 100
+          },
+          "quantity": 1
+        }
+      ],
+      "total": 100,
+      "id": "G3Ja37MaixU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

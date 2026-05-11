@@ -1,0 +1,13 @@
+<section class="gallery">
+  <header class="gallery-header">
+    <h2>Lista de Produtos</h2>
+  </header>
+
+  <div class="gallery-list">
+    @for (product of products(); track product.id) {
+        <app-product-list-element [product]="product"></app-product-list-element>
+    } @empty {
+      <p class="empty-gallery">Não existem produtos na galeria.</p>
+    }
+  </div>
+</section>

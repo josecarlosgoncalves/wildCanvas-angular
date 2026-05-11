@@ -1,6 +1,11 @@
-# WildCanvas000
+# WildCanvas 1.0.0
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+Online painting sales application
+Menu: Home, Gallery, Cart
+Home - Application presentation
+Gallery - Paintings for sale with details modal
+Cart - View shopping cart
+An Admin page to add Products to the application
 
 ## Development server
 

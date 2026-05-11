@@ -1,0 +1,130 @@
+<section>
+  <h2>Painel de Administração</h2>
+  @if (!isAuthenticated()) {
+    <form (ngSubmit)="checkPassword()" class="auth-form">
+      <div class="form-group">
+        <label for="password">Palavra-passe:</label>
+        <input id="password" type="password" [(ngModel)]="password" name="password" required />
+      </div>
+      <button type="submit" class="submit-btn">Entrar</button>
+    </form>
+  } @else {
+    <div class="admin-summary">
+      <article>
+        <span>Disponíveis</span>
+        <strong>{{ produtosDisponiveis() }}</strong>
+      </article>
+      <article>
+        <span>Não disponíveis</span>
+        <strong>{{ produtosIndisponiveis() }}</strong>
+      </article>
+      <article>
+        <span>Stock total</span>
+        <strong>{{ totalStock() }}</strong>
+      </article>
+      <article>
+        <span>No carrinho</span>
+        <strong>{{ totalNoCarrinho() }}</strong>
+      </article>
+    </div>
+
+    <section class="admin-products">
+      <h3>Lista de Produtos</h3>
+
+      <div class="product-table">
+        <div class="product-row product-row-header">
+          <span>Produto</span>
+          <span>Disponibilidade</span>
+          <span>Stock</span>
+          <span>No carrinho</span>
+          <span>Vendidos</span>
+        </div>
+
+        @for (product of products(); track product.id) {
+          <div class="product-row" [class.product-row-with-sales]="detalhesVendas(product.id).length > 0">
+            <div class="product-info">
+              <img [src]="product.imagem" alt="Imagem do produto" />
+              <span>{{ product.titulo }}</span>
+            </div>
+            <span
+              class="status"
+              [class.status-available]="product.quantidade > 0"
+              [class.status-unavailable]="product.quantidade === 0"
+            >
+              {{ disponibilidade(product) }}
+            </span>
+            <span>{{ product.quantidade }}</span>
+            <span>{{ quantidadeNoCarrinho(product.id) }}</span>
+            <span>{{ produtosVendidos(product.id) }}</span>
+
+            @if (detalhesVendas(product.id).length > 0) {
+              <div class="sale-details">
+                <h4>Detalhes da compra</h4>
+
+                @for (sale of detalhesVendas(product.id); track sale.orderNumber) {
+                  <article class="sale-detail">
+                    <span>Pedido: {{ sale.orderNumber }}</span>
+                    <span>Cliente: {{ sale.customer.nome }}</span>
+                    <span>Pagamento: {{ sale.paymentMethod }}</span>
+                    <span>Quantidade: {{ quantidadeVendidaNaCompra(sale, product.id) }}</span>
+                    <span>Valor: {{ valorVendidoNaCompra(sale, product.id) | currency: 'EUR' }}</span>
+                    <span>Data: {{ sale.date | date: 'dd/MM/yyyy HH:mm' }}</span>
+                  </article>
+                }
+              </div>
+            }
+          </div>
+        } @empty {
+          <p class="empty-products">Não existem produtos registados.</p>
+        }
+      </div>
+    </section>
+
+    <h3>Adicionar Novo Produto</h3>
+    <form (ngSubmit)="addProduct()" class="add-product-form">
+      <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input id="titulo" type="text" [(ngModel)]="newProduct.titulo" name="titulo" required />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <textarea
+          id="descricao"
+          [(ngModel)]="newProduct.descricao"
+          name="descricao"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">Imagem:</label>
+        <input
+          id="imagem"
+          type="text"
+          [(ngModel)]="newProduct.imagem"
+          name="imagem"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <input
+          id="quantidade"
+          type="number"
+          [(ngModel)]="newProduct.quantidade"
+          name="quantidade"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="preco">Preço:</label>
+        <input id="preco" type="number" [(ngModel)]="newProduct.preco" name="preco" required />
+      </div>
+
+      <button type="submit" class="submit-btn">Adicionar Produto</button>
+    </form>
+  }
+</section>

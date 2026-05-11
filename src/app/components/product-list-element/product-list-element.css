@@ -1,0 +1,133 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+section {
+  margin: 0;
+  color: #243023;
+  font-family: Poppins, Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 0.75rem;
+  color: #16351f;
+  font-size: 2rem;
+}
+
+section > p {
+  max-width: 760px;
+  margin-bottom: 1.5rem;
+  color: #5c665b;
+  line-height: 1.6;
+}
+
+.product-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #d8ded6;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(22, 53, 31, 0.08);
+}
+
+.product-item h3 {
+  grid-column: 2;
+  margin: 0;
+  color: #16351f;
+  font-size: 1.35rem;
+}
+
+.product-item img {
+  grid-row: 1 / span 4;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-item p {
+  grid-column: 2;
+  margin: 0;
+  color: #4d584c;
+  line-height: 1.45;
+}
+
+.product-item p:last-child {
+  font-weight: 700;
+  color: #1f7a3a;
+}
+
+@media (max-width: 640px) {
+  section {
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .product-item {
+    grid-template-columns: 1fr;
+  }
+
+  .product-item h3,
+  .product-item img,
+  .product-item p {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: #16351f;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background-color: #1f7a3a;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.modal-cart-button {
+  margin-top: 1rem;
+}

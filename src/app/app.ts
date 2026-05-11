@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Navbar } from './components/navbar/navbar';
+import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Navbar, Footer],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('wild_canvas_0.0.0');
+  protected readonly title = signal('wild_canvas_1.0.0');
 }
