@@ -1,14 +1,13 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { StockPipe } from '../../pipe/stock-pipe';
 import { Product } from '../../models/product';
 import { CartService } from '../../services/cart';
 import { ProductService } from '../../services/product';
 
 @Component({
   selector: 'app-product-list-element',
-  imports: [FormsModule, CurrencyPipe, StockPipe],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './product-list-element.html',
   styleUrl: './product-list-element.css',
 })
@@ -24,6 +23,14 @@ export class ProductListElement {
 
   imagem(): string {
     return this.product().imagem;
+  }
+
+  autor(): string {
+    return this.product().autor;
+  }
+
+  dataQuadro(): string {
+    return this.product().dataQuadro;
   }
 
   descricao(): string {
@@ -42,12 +49,16 @@ export class ProductListElement {
     return this.quantidade() > 0;
   }
 
+  disponibilidade(): string {
+    return this.existeStock() ? 'Disponível' : 'Indisponível';
+  }
+
   adicionarAoCarrinho(): void {
     if (this.existeStock()) {
       this.cartService.addToCart(this.product());
       this.productService.updateQuantidade(this.product().id, -1);
     } else {
-      alert('Produto sem stock!');
+      alert('Produto indisponível!');
     }
   }
 

@@ -10,10 +10,10 @@ header {
   gap: 1.5rem;
   width: 100%;
   padding: 1rem 2rem;
-  background-color: #16351f;
-  color: #ffffff;
+  background-color: var(--color-evergreen);
+  color: var(--color-cream-light);
   font-family: Poppins, Arial, sans-serif;
-  box-shadow: 0 4px 18px rgba(22, 53, 31, 0.18);
+  box-shadow: var(--shadow-soft);
 }
 
 h1 {
@@ -33,7 +33,7 @@ h1 {
   height: 44px;
   object-fit: contain;
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--color-cream);
   padding: 0.25rem;
 }
 
@@ -74,7 +74,7 @@ nav a {
   min-height: 40px;
   padding: 0.5rem 0.9rem;
   border-radius: 8px;
-  color: #edf6ef;
+  color: var(--color-cream-light);
   text-decoration: none;
   font-weight: 600;
   transition:
@@ -83,8 +83,8 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #ffffff;
-  color: #16351f;
+  background-color: var(--color-cream);
+  color: var(--color-evergreen);
 }
 
 @media (max-width: 640px) {
@@ -124,5 +124,9 @@ nav a:hover {
     width: 100%;
     padding: 0.75rem;
     font-size: 0.95rem;
+  }
+
+  .admin-nav-item {
+    display: none;
   }
 }

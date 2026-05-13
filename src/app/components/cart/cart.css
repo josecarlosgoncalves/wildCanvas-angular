@@ -7,26 +7,26 @@ section {
   max-width: 960px;
   margin: 2rem auto;
   padding: 1.5rem;
-  color: #243023;
+  color: var(--color-ink);
   font-family: Poppins, Arial, sans-serif;
 }
 
 h2 {
   margin-bottom: 0.75rem;
-  color: #16351f;
+  color: var(--color-evergreen);
   font-size: 2rem;
 }
 
 h3 {
   margin: 0 0 1rem;
-  color: #16351f;
+  color: var(--color-evergreen);
   font-size: 1.4rem;
 }
 
 section > p {
   max-width: 760px;
   margin-bottom: 1.5rem;
-  color: #5c665b;
+  color: var(--color-muted);
   line-height: 1.6;
 }
 
@@ -46,17 +46,17 @@ section > p {
 .checkout-steps button {
   min-height: 44px;
   padding: 0.65rem;
-  border: 1px solid #d8ded6;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background-color: #ffffff;
-  color: #5c665b;
+  background-color: var(--color-surface);
+  color: var(--color-muted);
   font-weight: 700;
   cursor: pointer;
 }
 
 .checkout-steps button.active {
-  background-color: #16351f;
-  color: #ffffff;
+  background-color: var(--color-evergreen);
+  color: var(--color-surface);
 }
 
 .checkout-steps button:disabled {
@@ -66,9 +66,9 @@ section > p {
 
 .checkout-panel {
   padding: 1rem;
-  border: 1px solid #d8ded6;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   box-shadow: 0 8px 24px rgba(22, 53, 31, 0.08);
 }
 
@@ -78,9 +78,9 @@ section > p {
   gap: 1rem;
   align-items: center;
   padding: 1rem;
-  border: 1px solid #edf1ec;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background-color: #fdfefd;
+  background-color: var(--color-cream-light);
   margin-bottom: 1rem;
 }
 
@@ -93,19 +93,19 @@ section > p {
 
 .item-details h3 {
   margin: 0 0 0.5rem 0;
-  color: #16351f;
+  color: var(--color-evergreen);
   font-size: 1.35rem;
 }
 
 .item-details p {
   margin: 0.25rem 0;
-  color: #5c665b;
+  color: var(--color-muted);
 }
 
 .remove-btn {
   padding: 0.5rem 1rem;
-  background-color: #1f7a3a;
-  color: white;
+  background-color: var(--color-evergreen-soft);
+  color: var(--color-cream-light);
   border: none;
   border-radius: 4px;
   font-weight: bold;
@@ -113,24 +113,24 @@ section > p {
 }
 
 .remove-btn:hover {
-  background-color: #16351f;
+  background-color: var(--color-evergreen);
 }
 
 .empty-cart {
   padding: 1rem;
-  color: #5c665b;
+  color: var(--color-muted);
 }
 
 .cart-summary {
   text-align: right;
   padding: 1rem;
-  border-top: 1px solid #d8ded6;
+  border-top: 1px solid var(--color-border);
 }
 
 .cart-summary p {
   margin: 0.5rem 0;
   font-weight: bold;
-  color: #16351f;
+  color: var(--color-evergreen);
 }
 
 .checkout-form {
@@ -149,14 +149,14 @@ section > p {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  color: #16351f;
+  color: var(--color-evergreen);
   font-weight: 700;
 }
 
 .form-grid input {
   min-height: 40px;
   padding: 0.5rem;
-  border: 1px solid #d8ded6;
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   font: inherit;
 }
@@ -178,8 +178,8 @@ section > p {
 .demo-note {
   padding: 1rem;
   border-radius: 6px;
-  background-color: #f4f7f3;
-  color: #243023;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
 }
 
 .order-review p,
@@ -203,13 +203,13 @@ section > p {
 }
 
 .primary-btn {
-  background-color: #1f7a3a;
-  color: #ffffff;
+  background-color: var(--color-evergreen-soft);
+  color: var(--color-surface);
 }
 
 .secondary-btn {
-  background-color: #e9eee8;
-  color: #16351f;
+  background-color: var(--color-cream);
+  color: var(--color-evergreen);
 }
 
 .primary-btn:disabled,

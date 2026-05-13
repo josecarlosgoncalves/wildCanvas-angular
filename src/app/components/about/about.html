@@ -1,24 +1,64 @@
-<main>
-  <section class="hero">
+<section class="about-page" aria-labelledby="about-title">
+  <div class="hero">
     <div class="hero-content">
-      <span class="badge">Sobre a WildCanvas</span>
+      <p class="badge">Sobre a WildCanvas</p>
 
-      <h1>Arte, paixão e criatividade selecionada</h1>
+      <h1 id="about-title">Arte escolhida com intenção para espaços com identidade</h1>
 
       <p>
-        A WildCanvas é uma loja de arte boutique dedicada a ajudá-lo a encontrar a pintura perfeita
-        para a sua casa. A nossa coleção inclui obras originais e impressões selecionadas pela sua
-        emoção, textura e impacto visual.
+        A WildCanvas aproxima pessoas de obras que fazem sentido no seu espaço. Reunimos pinturas
+        originais e peças selecionadas pela composição, textura, cor e capacidade de transformar a
+        atmosfera de uma divisão.
       </p>
 
       <div class="hero-actions">
-        <a routerLink="/gallery" class="btn primary">Ver Galeria</a>
-        <a routerLink="/" class="btn secondary">Voltar ao Início</a>
+        <a routerLink="/gallery" class="btn primary" aria-label="Ver galeria de produtos">
+          Ver Galeria
+        </a>
+        <a routerLink="/" class="btn secondary" aria-label="Voltar à página inicial">
+          Voltar ao Início
+        </a>
       </div>
     </div>
 
     <div class="hero-image">
-      <img src="/images/hero-art.png" alt="Mostra de arte WildCanvas" />
+      <img
+        src="/images/hero-art.webp"
+        alt="Composição visual com pinturas da coleção WildCanvas"
+        width="500"
+        height="400"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <section class="about-values" aria-labelledby="values-title">
+    <h2 id="values-title">Como escolhemos cada obra</h2>
+
+    <div class="value-grid">
+      <article>
+        <h3>Conceito visual</h3>
+        <p>
+          Selecionamos peças com leitura clara, bom equilíbrio cromático e presença visual para
+          diferentes ambientes.
+        </p>
+      </article>
+
+      <article>
+        <h3>Contexto da obra</h3>
+        <p>
+          Cada quadro deve comunicar informação útil: autor, data, preço e disponibilidade de forma
+          simples.
+        </p>
+      </article>
+
+      <article>
+        <h3>Compra simples</h3>
+        <p>
+          A experiência foi pensada para pesquisar, ver detalhes e concluir uma venda demonstrativa
+          com poucos passos.
+        </p>
+      </article>
     </div>
   </section>
-</main>
+</section>

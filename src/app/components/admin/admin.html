@@ -26,10 +26,53 @@
         <span>No carrinho</span>
         <strong>{{ totalNoCarrinho() }}</strong>
       </article>
+      <article>
+        <span>Vendas</span>
+        <strong>{{ totalVendas() }}</strong>
+      </article>
+      <article>
+        <span>Receita</span>
+        <strong>{{ receitaTotal() | currency: 'EUR' }}</strong>
+      </article>
     </div>
 
-    <section class="admin-products">
-      <h3>Lista de Produtos</h3>
+    <section class="dashboard-panel" aria-labelledby="sales-dashboard-title">
+      <h3 id="sales-dashboard-title">Dashboard de Vendas</h3>
+
+      <div class="dashboard-grid">
+        <article class="metric-card">
+          <span>Produtos vendidos</span>
+          <strong>{{ totalProdutosVendidos() }}</strong>
+        </article>
+
+        <article class="metric-card">
+          <span>Valor médio por venda</span>
+          <strong>{{ ticketMedio() | currency: 'EUR' }}</strong>
+        </article>
+      </div>
+
+      <div class="chart-card">
+        <h4>Produtos mais vendidos</h4>
+
+        @for (product of vendasPorProduto(); track product.titulo) {
+          <div class="bar-row">
+            <div class="bar-label">
+              <span>{{ product.titulo }}</span>
+              <strong>{{ product.quantidade }}</strong>
+            </div>
+            <div class="bar-track" aria-hidden="true">
+              <span class="bar-fill" [style.width]="larguraBarra(product.quantidade)"></span>
+            </div>
+            <small>{{ product.receita | currency: 'EUR' }}</small>
+          </div>
+        } @empty {
+          <p class="empty-products">Ainda não existem vendas registadas.</p>
+        }
+      </div>
+    </section>
+
+    <section class="admin-products" aria-labelledby="product-list-title">
+      <h3 id="product-list-title">Lista de Produtos</h3>
 
       <div class="product-table">
         <div class="product-row product-row-header">
@@ -38,39 +81,83 @@
           <span>Stock</span>
           <span>No carrinho</span>
           <span>Vendidos</span>
+          <span>Ações</span>
         </div>
 
         @for (product of products(); track product.id) {
-          <div class="product-row" [class.product-row-with-sales]="detalhesVendas(product.id).length > 0">
-            <div class="product-info">
-              <img [src]="product.imagem" alt="Imagem do produto" />
-              <span>{{ product.titulo }}</span>
-            </div>
-            <span
-              class="status"
-              [class.status-available]="product.quantidade > 0"
-              [class.status-unavailable]="product.quantidade === 0"
-            >
-              {{ disponibilidade(product) }}
-            </span>
-            <span>{{ product.quantidade }}</span>
-            <span>{{ quantidadeNoCarrinho(product.id) }}</span>
-            <span>{{ produtosVendidos(product.id) }}</span>
-
-            @if (detalhesVendas(product.id).length > 0) {
-              <div class="sale-details">
-                <h4>Detalhes da compra</h4>
-
-                @for (sale of detalhesVendas(product.id); track sale.orderNumber) {
-                  <article class="sale-detail">
-                    <span>Pedido: {{ sale.orderNumber }}</span>
-                    <span>Cliente: {{ sale.customer.nome }}</span>
-                    <span>Pagamento: {{ sale.paymentMethod }}</span>
-                    <span>Quantidade: {{ quantidadeVendidaNaCompra(sale, product.id) }}</span>
-                    <span>Valor: {{ valorVendidoNaCompra(sale, product.id) | currency: 'EUR' }}</span>
-                    <span>Data: {{ sale.date | date: 'dd/MM/yyyy HH:mm' }}</span>
-                  </article>
-                }
+          <div class="product-row">
+            @if (isEditing(product.id)) {
+              <div class="edit-fields">
+                <label>
+                  Título
+                  <input type="text" [(ngModel)]="editingProduct.titulo" name="editTitulo" />
+                </label>
+                <label>
+                  Autor
+                  <input type="text" [(ngModel)]="editingProduct.autor" name="editAutor" />
+                </label>
+                <label>
+                  Data
+                  <input type="text" [(ngModel)]="editingProduct.dataQuadro" name="editData" />
+                </label>
+                <label>
+                  Imagem
+                  <input type="text" [(ngModel)]="editingProduct.imagem" name="editImagem" />
+                </label>
+                <label>
+                  Descrição
+                  <textarea [(ngModel)]="editingProduct.descricao" name="editDescricao"></textarea>
+                </label>
+                <label>
+                  Preço
+                  <input type="number" [(ngModel)]="editingProduct.preco" name="editPreco" />
+                </label>
+              </div>
+              <span
+                class="status"
+                [class.status-available]="editingProduct.quantidade > 0"
+                [class.status-unavailable]="editingProduct.quantidade === 0"
+              >
+                {{ disponibilidade(editingProduct) }}
+              </span>
+              <input
+                class="stock-input"
+                type="number"
+                min="0"
+                [(ngModel)]="editingProduct.quantidade"
+                name="editQuantidade"
+                aria-label="Stock do produto"
+              />
+              <span>{{ quantidadeNoCarrinho(product.id) }}</span>
+              <span>{{ produtosVendidos(product.id) }}</span>
+              <div class="row-actions">
+                <button type="button" class="save-btn" (click)="saveEdit()">Guardar</button>
+                <button type="button" class="secondary-action" (click)="cancelEdit()">
+                  Cancelar
+                </button>
+              </div>
+            } @else {
+              <div class="product-info">
+                <img [src]="product.imagem" alt="Imagem do produto" />
+                <span>{{ product.titulo }}</span>
+              </div>
+              <span
+                class="status"
+                [class.status-available]="product.quantidade > 0"
+                [class.status-unavailable]="product.quantidade === 0"
+              >
+                {{ disponibilidade(product) }}
+              </span>
+              <span>{{ product.quantidade }}</span>
+              <span>{{ quantidadeNoCarrinho(product.id) }}</span>
+              <span>{{ produtosVendidos(product.id) }}</span>
+              <div class="row-actions">
+                <button type="button" class="secondary-action" (click)="startEdit(product)">
+                  Editar
+                </button>
+                <button type="button" class="danger-btn" (click)="removeProduct(product)">
+                  Remover
+                </button>
               </div>
             }
           </div>
@@ -80,11 +167,64 @@
       </div>
     </section>
 
+    <section class="sales-history" aria-labelledby="sales-history-title">
+      <h3 id="sales-history-title">Histórico de Vendas</h3>
+
+      <div class="sale-list">
+        @for (sale of sales(); track sale.orderNumber) {
+          <article class="sale-card">
+            <div>
+              <span>Pedido</span>
+              <strong>{{ sale.orderNumber }}</strong>
+            </div>
+            <div>
+              <span>Cliente</span>
+              <strong>{{ sale.customer.nome }}</strong>
+            </div>
+            <div>
+              <span>Produtos</span>
+              <strong>{{ produtosDaVenda(sale) }}</strong>
+            </div>
+            <div>
+              <span>Pagamento</span>
+              <strong>{{ sale.paymentMethod }}</strong>
+            </div>
+            <div>
+              <span>Total</span>
+              <strong>{{ sale.total | currency: 'EUR' }}</strong>
+            </div>
+            <div>
+              <span>Data</span>
+              <strong>{{ sale.date | date: 'dd/MM/yyyy HH:mm' }}</strong>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty-products">Ainda não existem vendas registadas.</p>
+        }
+      </div>
+    </section>
+
     <h3>Adicionar Novo Produto</h3>
     <form (ngSubmit)="addProduct()" class="add-product-form">
       <div class="form-group">
         <label for="titulo">Título:</label>
         <input id="titulo" type="text" [(ngModel)]="newProduct.titulo" name="titulo" required />
+      </div>
+
+      <div class="form-group">
+        <label for="autor">Autor:</label>
+        <input id="autor" type="text" [(ngModel)]="newProduct.autor" name="autor" required />
+      </div>
+
+      <div class="form-group">
+        <label for="dataQuadro">Data do quadro:</label>
+        <input
+          id="dataQuadro"
+          type="text"
+          [(ngModel)]="newProduct.dataQuadro"
+          name="dataQuadro"
+          required
+        />
       </div>
 
       <div class="form-group">
@@ -101,11 +241,16 @@
         <label for="imagem">Imagem:</label>
         <input
           id="imagem"
-          type="text"
-          [(ngModel)]="newProduct.imagem"
-          name="imagem"
+          type="file"
+          accept="image/*"
+          name="imagemUpload"
+          (change)="onImageSelected($event)"
           required
         />
+
+        @if (imagePreview()) {
+          <img class="image-preview" [src]="imagePreview()" alt="Pré-visualização do produto" />
+        }
       </div>
 
       <div class="form-group">

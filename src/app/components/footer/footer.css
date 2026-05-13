@@ -6,11 +6,11 @@
 footer {
   width: 100%;
   padding: 1rem 2rem;
-  background-color: #16351f;
-  color: #edf6ef;
+  background-color: var(--color-evergreen);
+  color: var(--color-cream-light);
   font-family: Poppins, Arial, sans-serif;
   text-align: center;
-  box-shadow: 0 -4px 18px rgba(22, 53, 31, 0.14);
+  box-shadow: var(--shadow-soft);
 }
 
 footer p {

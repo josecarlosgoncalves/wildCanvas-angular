@@ -1,32 +1,42 @@
 <section>
   <article class="product-item">
-    <h3>{{ titulo() }}</h3>
-    <img [src]="imagem()" alt="Imagem do produto" />
-    <p>{{ descricao() }}</p>
-    <p>Preço: {{ preco() | currency: 'EUR' }}</p>
-    <p>{{ quantidade() | stock }}</p>
-    <button (click)="openModal()">Ver Detalhes</button>
-    <button
-      (click)="adicionarAoCarrinho()"
-      [disabled]="!existeStock()"
-      [class.botao-ativo]="existeStock()"
-      [style.font-weight]="existeStock() ? 'bold' : 'normal'"
-    >
-      Adicionar ao Carrinho
-    </button>
+    <img [src]="imagem()" [alt]="'Quadro ' + titulo()" loading="lazy" />
+    <button type="button" (click)="openModal()">Ver Detalhes</button>
   </article>
 
   @if (showModal()) {
     <div class="modal-overlay" (click)="closeModal()">
-      <div class="modal-content" (click)="$event.stopPropagation()">
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-labelledby]="'modal-title-' + product().id"
+        (click)="$event.stopPropagation()"
+      >
         <button class="modal-close" type="button" aria-label="Fechar" (click)="closeModal()">
           X
         </button>
-        <h3>{{ titulo() }}</h3>
-        <img [src]="imagem()" alt="Imagem do produto" />
+        <h3 [id]="'modal-title-' + product().id">{{ titulo() }}</h3>
+        <img [src]="imagem()" [alt]="'Quadro ' + titulo()" loading="lazy" />
+        <dl class="painting-details">
+          <div>
+            <dt>Autor</dt>
+            <dd>{{ autor() }}</dd>
+          </div>
+          <div>
+            <dt>Data do quadro</dt>
+            <dd>{{ dataQuadro() }}</dd>
+          </div>
+          <div>
+            <dt>Preço</dt>
+            <dd>{{ preco() | currency: 'EUR' }}</dd>
+          </div>
+          <div>
+            <dt>Estado</dt>
+            <dd>{{ disponibilidade() }}</dd>
+          </div>
+        </dl>
         <p>{{ descricao() }}</p>
-        <p>Preço: {{ preco() | currency: 'EUR' }}</p>
-        <p>{{ quantidade() | stock }}</p>
         <button
           class="modal-cart-button"
           type="button"

@@ -20,6 +20,8 @@ describe('ProductListElement', () => {
       id: 1,
       imagem: '/images/Produto_01.jpg',
       titulo: 'Produto Teste',
+      autor: 'Autor Teste',
+      dataQuadro: '2026',
       descricao: 'Descrição de teste',
       quantidade: 2,
       preco: 10,

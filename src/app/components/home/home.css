@@ -5,7 +5,7 @@
   align-items: center;
   gap: 3rem;
   padding: 4rem 8%;
-  background: linear-gradient(135deg, #f8f3eb, #ffffff);
+  background: linear-gradient(135deg, var(--color-cream), var(--color-cream-light));
 }
 
 .hero-content {
@@ -16,8 +16,8 @@
   display: inline-block;
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background: #ead8b8;
-  color: #16351f;
+  background: var(--color-wheat);
+  color: var(--color-evergreen);
   border-radius: 50px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -29,14 +29,14 @@
   font-family: Georgia, serif;
   font-size: clamp(2.8rem, 6vw, 5rem);
   line-height: 1.05;
-  color: #16351f;
+  color: var(--color-evergreen);
   margin-bottom: 1.5rem;
 }
 
 .hero p {
   font-size: 1.2rem;
   line-height: 1.7;
-  color: #5c665b;
+  color: var(--color-muted);
   margin-bottom: 2rem;
 }
 
@@ -56,23 +56,23 @@
 }
 
 .btn.primary {
-  background: #1f7a3a;
-  color: white;
+  background: var(--color-evergreen);
+  color: var(--color-cream-light);
 }
 
 .btn.primary:hover {
-  background: #16351f;
+  background: var(--color-evergreen-soft);
   transform: translateY(-3px);
 }
 
 .btn.secondary {
-  border: 2px solid #1f7a3a;
-  color: #1f7a3a;
+  border: 2px solid var(--color-evergreen);
+  color: var(--color-evergreen);
 }
 
 .btn.secondary:hover {
-  background: #1f7a3a;
-  color: white;
+  background: var(--color-evergreen);
+  color: var(--color-cream-light);
   transform: translateY(-3px);
 }
 

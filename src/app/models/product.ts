@@ -1,6 +1,8 @@
 export interface ProductBase {
   imagem: string;
   titulo: string;
+  autor: string;
+  dataQuadro: string;
   descricao: string;
   quantidade: number;
   preco: number;

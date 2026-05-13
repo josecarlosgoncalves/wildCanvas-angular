@@ -13,6 +13,8 @@ export class ProductService {
       id: 1,
       imagem: '/images/Produto_01.jpg',
       titulo: 'Cão',
+      autor: 'WildCanvas Studio',
+      dataQuadro: '2026',
       descricao: 'Pintura expressiva com tons vibrantes, ideal para dar vida a qualquer espaço.',
       quantidade: 4,
       preco: 100,
@@ -21,6 +23,8 @@ export class ProductService {
       id: 2,
       imagem: '/images/Produto_02.jpg',
       titulo: 'Dragão',
+      autor: 'José Carlos Gonçalves',
+      dataQuadro: '2026',
       descricao: 'Obra de fantasia com detalhes intensos e uma presença visual marcante.',
       quantidade: 2,
       preco: 75,
@@ -29,6 +33,8 @@ export class ProductService {
       id: 3,
       imagem: '/images/Produto_03.jpg',
       titulo: 'Dragão',
+      autor: 'WildCanvas Studio',
+      dataQuadro: '2026',
       descricao: 'Peça artística com composição dinâmica, perfeita para ambientes criativos.',
       quantidade: 4,
       preco: 80,
@@ -55,6 +61,8 @@ export class ProductService {
     const productData: ProductCreate = {
       imagem: product.imagem,
       titulo: product.titulo,
+      autor: product.autor,
+      dataQuadro: product.dataQuadro,
       descricao: product.descricao,
       quantidade: product.quantidade,
       preco: product.preco,
@@ -66,6 +74,30 @@ export class ProductService {
       },
       error: () => {
         alert('Não foi possível adicionar o produto. Verifique se o json-server está ligado.');
+      },
+    });
+  }
+
+  updateProduct(product: Product) {
+    this.http.put<Product>(`${this.apiUrl}/${product.id}`, product).subscribe({
+      next: (updatedProduct) => {
+        this.products.update((products) =>
+          products.map((p) => (p.id === updatedProduct.id ? updatedProduct : p)),
+        );
+      },
+      error: () => {
+        alert('Não foi possível editar o produto. Verifique se o json-server está ligado.');
+      },
+    });
+  }
+
+  removeProduct(id: number | string) {
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe({
+      next: () => {
+        this.products.update((products) => products.filter((product) => product.id !== id));
+      },
+      error: () => {
+        alert('Não foi possível remover o produto. Verifique se o json-server está ligado.');
       },
     });
   }

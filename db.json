@@ -4,6 +4,8 @@
       "id": "1",
       "imagem": "/images/Produto_01.jpg",
       "titulo": "Cão",
+      "autor": "WildCanvas Studio",
+      "dataQuadro": "2026",
       "descricao": "Pintura expressiva com tons vibrantes, ideal para dar vida a qualquer espaço.",
       "quantidade": 0,
       "preco": 100
@@ -12,6 +14,8 @@
       "id": "2",
       "imagem": "/images/Produto_02.jpg",
       "titulo": "Dragão",
+      "autor": "José Carlos Gonçalves",
+      "dataQuadro": "2026",
       "descricao": "Obra de fantasia com detalhes intensos e uma presença visual marcante.",
       "quantidade": 2,
       "preco": 75
@@ -20,6 +24,8 @@
       "id": "3",
       "imagem": "/images/Produto_03.jpg",
       "titulo": "Dragão",
+      "autor": "WildCanvas Studio",
+      "dataQuadro": "2026",
       "descricao": "Peça artística com composição dinâmica, perfeita para ambientes criativos.",
       "quantidade": 4,
       "preco": 80
@@ -28,9 +34,21 @@
       "id": "4",
       "imagem": "/images/Produto_04.jpg",
       "titulo": "Unicórnio",
+      "autor": "Mayraa",
+      "dataQuadro": "2026",
       "descricao": "Pintura mágica com detalhes encantadores, ideal para ambientes acolhedores.",
       "quantidade": 3,
       "preco": 90
+    },
+    {
+      "imagem": "/images/produto_15.png",
+      "titulo": "Dog 2",
+      "autor": "Sousa Pontes",
+      "dataQuadro": "2025",
+      "descricao": "ultimo trabalho do artista",
+      "quantidade": 1,
+      "preco": 150,
+      "id": "H7x0BxLEq5U"
     }
   ],
   "vendas": [
@@ -52,6 +70,8 @@
             "id": "1",
             "imagem": "/images/Produto_01.jpg",
             "titulo": "Cão",
+            "autor": "WildCanvas Studio",
+            "dataQuadro": "2026",
             "descricao": "Pintura expressiva com tons vibrantes, ideal para dar vida a qualquer espaço.",
             "quantidade": 1,
             "preco": 100
