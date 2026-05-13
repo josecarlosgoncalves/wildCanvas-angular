@@ -61,10 +61,13 @@ section > p {
   left: 0;
   width: 100%;
   height: 100%;
+  min-height: 100dvh;
   background-color: rgba(4, 50, 34, 0.72);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
+  overflow-y: auto;
   z-index: 1000;
 }
 
@@ -75,13 +78,16 @@ section > p {
   border-radius: 8px;
   max-width: 500px;
   width: 90%;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
   text-align: center;
 }
 
 .modal-close {
-  position: absolute;
+  position: sticky;
+  float: right;
   top: 0.75rem;
-  right: 0.75rem;
+  margin: -0.75rem -0.75rem 0.5rem 0.75rem;
   width: 2rem;
   height: 2rem;
   border: 0;
@@ -149,7 +155,26 @@ section > p {
 }
 
 @media (max-width: 640px) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding: 0.75rem;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-height: calc(100dvh - 1.5rem);
+    padding: 1.25rem;
+  }
+
+  .modal-content img {
+    max-height: 220px;
+  }
+
   .painting-details {
     grid-template-columns: 1fr;
+  }
+
+  .modal-cart-button {
+    width: 100%;
   }
 }

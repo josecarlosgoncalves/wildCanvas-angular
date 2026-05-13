@@ -18,6 +18,7 @@
         </button>
         <h3 [id]="'modal-title-' + product().id">{{ titulo() }}</h3>
         <img [src]="imagem()" [alt]="'Quadro ' + titulo()" loading="lazy" />
+        <p>{{ descricao() }}</p>
         <dl class="painting-details">
           <div>
             <dt>Autor</dt>
@@ -36,7 +37,6 @@
             <dd>{{ disponibilidade() }}</dd>
           </div>
         </dl>
-        <p>{{ descricao() }}</p>
         <button
           class="modal-cart-button"
           type="button"
